@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TraineeController!{% endblock %}
+
+{% block body %}
+    <h1>Trainee's List</h1>
+    {% for trainee in trainees %}
+    <a href="{{ path('app_trainee_show', {'id': trainee.id}) }}">{{ trainee }}</a><br>
+    {% endfor %}
+{% endblock %}

@@ -163,4 +163,16 @@ class Trainee
 
         return $this;
     }
+
+    public function getAge(): ?string
+    {
+        $now = new \DateTime();
+        $interval = $this->birthDate->diff($now);
+        return $interval->format('%y ans');
+    }
+
+    public function __toString(): string
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }

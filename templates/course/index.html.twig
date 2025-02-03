@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CourseController!{% endblock %}
+
+{% block body %}
+    <h1>Course's List</h1>
+    {% for course in courses %}
+        <a href="{{ path('app_course_show', {'id': course.id}) }}">{{ course.name }}</a><br>
+    {% endfor %}
+{% endblock %}
