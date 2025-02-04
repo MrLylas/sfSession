@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}session's details{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>program's details</h1>
+
+        <h2>{{ program }}</h2>
+        <p>Session : {{ program.getSession() }}</p>
+        <p>Course : {{ program.getCourse() }}</p>
+        <p>Duration : {{ program.getDurationDays() }} days</p>
+        {% for trainee in session.trainees %}
+            {{ trainee }}
+        {% endfor %}
+        
+    </div>
+{% endblock %}

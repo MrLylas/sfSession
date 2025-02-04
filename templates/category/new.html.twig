@@ -1,0 +1,8 @@
+{% block body %}
+<div class="container">
+    {{ form_start(formAddCategory) }}
+        {{ form_row(formAddCategory.name) }}
+        {{ form_row(formAddCategory.submit) }}
+    {{ form_end(formAddCategory) }}
+</div>
+{% endblock %}

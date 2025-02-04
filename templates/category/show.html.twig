@@ -3,10 +3,12 @@
 {% block title %}Trainee's details{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Course's by category</h1>
 
     <h2>{{ category }}</h2>
     {% for course in category.courses() %}
     <a href="{{ path('app_course_show', {'id': course.id}) }}">{{ course }}</a><br>
     {% endfor %}
+</div>
 {% endblock %}

@@ -3,8 +3,12 @@
 {% block title %}Hello TraineeController!{% endblock %}
 
 {% block body %}
-    <h1>Trainee's List</h1>
-    {% for trainee in trainees %}
-    <a href="{{ path('app_trainee_show', {'id': trainee.id}) }}">{{ trainee }}</a><br>
-    {% endfor %}
+<h1>Trainee's List</h1>
+    <div class="container">
+        <a href="{{ path('new_trainee') }}">Add Trainee</a>
+        {% for trainee in trainees %}
+        <a href="{{ path('app_trainee_show', {'id': trainee.id}) }}">{{ trainee }}</a><a href="{{ path('delete_trainee', {'id': trainee.id}) }}"> Delete</a><br>
+        {% endfor %}
+    </div>
 {% endblock %}
+
