@@ -7,14 +7,27 @@
         <h1>Session's details</h1>
 
         <h2>{{ session }}</h2>
+        <a href="{{ path('edit_session', {'session': session.id}) }}">Edit</a><br>
+        <a href="{{path('new_program')}}">Add Program</a>
         <p>{{ session.name() }}</p>
         <p>Nombres de places disponibles :{{ session.placesNb() }}</p>
         <p>Date de début :{{ session.startDate()| date('d.m.Y') }}</p>
         <p> Date de fin :{{ session.endDate()| date('d.m.Y') }}</p>
-        <a href="{{ path('edit_session', {'id': session.id}) }}">Edit</a><br><br>
-
+        
         {% for program in session.programs %}
-            <a href="{{ path('app_program_show', {'id': program.id}) }}">{{ program }}</a><br>
+            {{program.course.name}}
+            {{program.durationDays()}}{{" days"}}<br>
+            <a href="{{path('remove_program_from_session', {'session': session.id, 'program': program.id})}}">Remove program from the session</a>
+        {% endfor %}
+        {% for trainees in session.trainees %}
+        {{ trainees }}<br>
+        <a href="{{ path('remove_trainee_from_session', {'session': session.id, 'trainee': trainees.id})}}">Remove trainee from the session</a>
+        {% endfor %}
+            <h2>Trainees not in the session</h2>
+        {% for traineeNot in traineeNotInSession %}
+            {{traineeNot.firstName}}
+            {{traineeNot.lastName}}<br>
+            <a href="{{ path('add_trainee_to_session', {'session': session.id, 'trainee': traineeNot.id}) }}">Add trainee to the session</a><br>
         {% endfor %}
     </div>
 {% endblock %}

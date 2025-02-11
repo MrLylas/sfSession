@@ -3,16 +3,19 @@
 {% block title %}session's details{% endblock %}
 
 {% block body %}
+{% if program is null %}
     <div class="container">
-        <h1>program's details</h1>
+        <p>Il n'y a rien ici</p>
+    </div>
+{% else %}
+    <div class="container">
+        <h1>Program's details</h1>
 
         <h2>{{ program }}</h2>
-        <p>Session : {{ program.getSession() }}</p>
-        <p>Course : {{ program.getCourse() }}</p>
-        <p>Duration : {{ program.getDurationDays() }} days</p>
-        {% for trainee in session.trainees %}
-            {{ trainee }}
-        {% endfor %}
-        
+        <p>Session : {{ program.session() }}</p>
+        <p>Course : {{ program.course() }}</p>
+        <p>Duration : {{ program.durationDays() }} days</p> 
+
     </div>
+{% endif %}
 {% endblock %}

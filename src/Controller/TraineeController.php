@@ -68,5 +68,14 @@ final class TraineeController extends AbstractController
         return $this->redirectToRoute('app_trainee');
     }
 
-
+    // #[Route('/trainee/{id}', name: 'remove_trainee_from_session')]
+    // public function removeTraineeFromSession(Trainee $trainee, Session $session, EntityManagerInterface $entityManager): Response
+    // {
+    //     $session->removeTrainee($trainee);
+    //     $entityManager->persist($session);
+    //     $entityManager->flush();
+    //     return $this->redirectToRoute('app_session_show',[
+    //         'session' => $session->getId()
+    //     ]);
+    // }
 }

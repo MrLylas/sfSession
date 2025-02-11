@@ -18,10 +18,13 @@ class Category
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
+    // #[ORM\OneToMany(targetEntity: Course::class, mappedBy: 'category', orphanRemoval: true)]
+    // private array $courses;
+
     /**
      * @var Collection<int, Course>
      */
-    #[ORM\OneToMany(targetEntity: Course::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Course::class, mappedBy: 'category', orphanRemoval: true)]
     private Collection $courses;
 
     public function __construct()

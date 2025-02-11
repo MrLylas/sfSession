@@ -3,6 +3,12 @@
 {% block title %}Hello ProgramController!{% endblock %}
 
 {% block body %}
-
-
+    <div class="container">
+        <h1>Program's List</h1>
+        {% for program in programs %}
+        <a href="{{ path('app_program_show', {'id': program.id}) }}">
+            {{program}}<br>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}

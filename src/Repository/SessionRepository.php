@@ -40,4 +40,45 @@ class SessionRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    // public function findTraineeNotInSession(){
+        
+    //     $entityManager = $this->getEntityManager();
+    //     $query = $entityManager->createQuery(
+    //         'SELECT t
+    //         FROM App\Entity\Trainee t
+    //         WHERE t.id NOT IN (
+    //             SELECT s.trainee
+    //             FROM App\Entity\Session s
+    //         )'
+    //     );
+    //     $query->execute();
+
+    //     return $query->getResult();
+    // }
+
+    public function findTraineeNotInSession($session_id){
+
+        $entityManager = $this->getEntityManager();
+        $subQuery = $entityManager->createQueryBuilder();
+
+        $qb = $subQuery;
+
+        $qb->select('t');
+        $qb->from('App\Entity\Trainee', 't');
+        $qb->leftJoin('t.sessions', 's');
+        $qb->where('s.id = :id');
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        $subQuery->select('tr');
+        $subQuery->from('App\Entity\Trainee', 'tr');
+        $subQuery->where($qb->expr()->notIn('tr.id', $qb->getDQL()));
+        $subQuery->setParameter('id', $session_id);
+        $subQuery->orderBy('tr.lastName');
+
+        $query = $subQuery->getQuery();
+
+        return $query->getResult();
+    }
 }
